@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     triggers {
         githubPush()
     }
@@ -11,7 +11,12 @@ pipeline {
             steps {
                 sh '''
                     #!/bin/bash
-                    docker exec -d project-java-tomcat /bin/sh -c "touch /home/user/aa.txt"
+                    cd /home/arthur/Desktop/jenkins-tmp-dir
+                    git clone https://github.com/ArthurWuTW/spring-boot-project
+                    cd spring-boot-project
+                    docker cp ./run-build.sh project-java-tomcat:/home/user
+                    docker exec -d project-java-tomcat /bin/sh -c "/home/user/run-build.sh"
+                    docker exec -d project-java-tomcat /bin/sh -c "rm /home/user/run-build.sh"
                 '''
             }
         }
