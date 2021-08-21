@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.example.entity.Person;
+import com.example.entity.TextSentiment;
 import com.example.service.Eservice;
 import com.example.service.IEservice;
 
@@ -24,11 +25,12 @@ public class AppConfiguration {
 	@Bean
 	public SessionFactory getSessionFactory() {
 		org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
-		configuration.setProperty("hibernate.hbm2ddl.auto", "create");
+		configuration.setProperty("hibernate.hbm2ddl.auto", "update");
 		configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL9Dialect");
 		configuration.setProperty("hibernate.current_session_context_class", "org.springframework.orm.hibernate5.SpringSessionContext");
 		configuration.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");
 		configuration.addAnnotatedClass(Person.class);
+		configuration.addAnnotatedClass(TextSentiment.class);
 		
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
 		DriverManagerDataSource dataSourceManager = new DriverManagerDataSource();
