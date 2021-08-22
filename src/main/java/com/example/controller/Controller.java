@@ -27,14 +27,7 @@ public class Controller {
 	
 	@PostMapping("/api/text")
 	public String getTextSentimentData(@RequestBody TextSentiment data) {
-//		manager.addTextSentiment(null);
-		System.out.println(data.getTitle());
-		System.out.println(data.getText());
-		System.out.println(data.getSearchText());
-		System.out.println(data.getIs_transcript());
-		System.out.println(data.getText());
-		System.out.println(data.getScore());
-		System.out.println(data.getStatus());
+		manager.addTextSentiment(data);
 		return "success";
 	}
 }

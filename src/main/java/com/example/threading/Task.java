@@ -1,14 +1,15 @@
 package com.example.threading;
 
+import com.example.entity.TextSentiment;
 import com.example.service.IEservice;
 import com.example.utils.CommonDataModel;
 
 public class Task implements Runnable{
 
-	private CommonDataModel data;
+	private TextSentiment data;
 	private IEservice service;
 	
-	public Task(CommonDataModel data, IEservice service) {
+	public Task(TextSentiment data, IEservice service) {
 		this.data = data;
 		this.service = service;
 	}
