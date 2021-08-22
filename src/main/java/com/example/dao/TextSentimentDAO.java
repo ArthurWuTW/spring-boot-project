@@ -16,6 +16,7 @@ public class TextSentimentDAO implements ITextSentimentDAO {
 	public void insert(TextSentiment data) {
 		data.setCt_date(new Date(System.currentTimeMillis()));
 		data.setStatus("UPDATING");
+		System.out.println(data.getTitle());
 		sessionFactory.getCurrentSession().save(data);
 	}
 

@@ -5,9 +5,11 @@ import javax.sql.DataSource;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 
 import com.example.dao.ITextSentimentDAO;
 import com.example.dao.TextSentimentDAO;
@@ -42,7 +44,7 @@ public class AppConfiguration {
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
 		DriverManagerDataSource dataSourceManager = new DriverManagerDataSource();
 		dataSourceManager.setDriverClassName("org.postgresql.Driver");
-		dataSourceManager.setUrl("jdbc:postgresql://172.17.0.3:5432/postgres");
+		dataSourceManager.setUrl("jdbc:postgresql://172.17.0.2:5432/postgres");
 		dataSourceManager.setUsername("myprojectuser");
 		dataSourceManager.setPassword("myprojectuser");
 		
@@ -52,6 +54,13 @@ public class AppConfiguration {
 		SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
 		
 		return sessionFactory;
+	}
+	
+	@Bean
+	public HibernateTransactionManager getTransactionManager(@Qualifier("getSessionFactory") SessionFactory sessionFactory) {
+		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+		transactionManager.setSessionFactory(sessionFactory);
+		return transactionManager;
 	}
 	
 	@Bean
