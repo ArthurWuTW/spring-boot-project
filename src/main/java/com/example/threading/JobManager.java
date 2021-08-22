@@ -2,20 +2,33 @@ package com.example.threading;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import org.hibernate.mapping.Array;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.service.IEservice;
 import com.example.utils.CommonDataModel;
 
 
 public class JobManager {
 	
-	LinkedList<CommonDataModel> queue = new LinkedList<>();
+	@Autowired
+	private IEservice service;
 	
-	public void enqueue(CommonDataModel data) {
-		queue.add(data);
+	private ExecutorService pool;
+	
+	public JobManager() {
+		pool = Executors.newFixedThreadPool(1);
 	}
 	
-	public void start() {
-		
+	public void addTextSentiment(CommonDataModel data) {
+		try {
+			pool.execute(new Task(data, service));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

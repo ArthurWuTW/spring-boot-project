@@ -38,6 +38,17 @@ public class TextSentiment implements Serializable {
 	@Column
 	private Date dt_date;
 	
+	@Column
+	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	public void setCt_date(Date ct_date) {
 		this.ct_date = ct_date;
 	}

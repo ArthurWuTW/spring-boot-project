@@ -13,6 +13,7 @@ import com.example.entity.Person;
 import com.example.entity.TextSentiment;
 import com.example.service.Eservice;
 import com.example.service.IEservice;
+import com.example.threading.JobManager;
 
 @Configuration
 public class AppConfiguration {
@@ -25,7 +26,7 @@ public class AppConfiguration {
 	@Bean
 	public SessionFactory getSessionFactory() {
 		org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
-		configuration.setProperty("hibernate.hbm2ddl.auto", "update");
+		configuration.setProperty("hibernate.hbm2ddl.auto", "none");
 		configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL9Dialect");
 		configuration.setProperty("hibernate.current_session_context_class", "org.springframework.orm.hibernate5.SpringSessionContext");
 		configuration.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");
@@ -45,5 +46,10 @@ public class AppConfiguration {
 		SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
 		
 		return sessionFactory;
+	}
+	
+	@Bean
+	public JobManager getJobManager() {
+		return new JobManager();
 	}
 }
