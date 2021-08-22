@@ -1,11 +1,22 @@
 package com.example.dao;
 
-public class TextSentimentDAO implements ITextSentimentDAO {
+import java.sql.Date;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.entity.TextSentiment;
+
+public class TextSentimentDAO implements ITextSentimentDAO {
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+	
 	@Override
-	public void insert() {
-		// TODO Auto-generated method stub
-		
+	public void insert(TextSentiment data) {
+		data.setCt_date(new Date(System.currentTimeMillis()));
+		data.setStatus("UPDATING");
+		sessionFactory.getCurrentSession().save(data);
 	}
 
 	@Override

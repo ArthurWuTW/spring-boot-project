@@ -4,15 +4,19 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.dao.ITextSentimentDAO;
 import com.example.entity.TextSentiment;
 import com.example.utils.CommonDataModel;
 
-@Transactional
+@Transactional(rollbackFor = {Exception.class})
 public class Eservice implements IEservice {
 	
 	
 	@Autowired
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
+	
+	@Autowired
+	private ITextSentimentDAO textSentimentDAO;
 	
 	@Override
 	public String sayHi() {
@@ -21,7 +25,7 @@ public class Eservice implements IEservice {
 
 	@Override
 	public void addTextSentiment(TextSentiment data) {
-		// TODO Auto-generated method stub
+		textSentimentDAO.insert(data);
 	}
 	
 }

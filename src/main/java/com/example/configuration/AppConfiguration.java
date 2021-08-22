@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import com.example.dao.ITextSentimentDAO;
+import com.example.dao.TextSentimentDAO;
 import com.example.entity.Person;
 import com.example.entity.TextSentiment;
 import com.example.service.Eservice;
@@ -21,6 +23,10 @@ public class AppConfiguration {
 	@Bean
 	public IEservice getEservice() {
 		return new Eservice();
+	}
+	
+	@Bean ITextSentimentDAO getTextSentimentDAO() {
+		return new TextSentimentDAO();
 	}
 	
 	@Bean
