@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name="TEXT_SENTIMENT", schema = "public")
 public class TextSentiment implements Serializable {
@@ -30,6 +32,7 @@ public class TextSentiment implements Serializable {
 	private String is_transcript;
 	
 	@Lob
+	@Type(type = "org.hibernate.type.TextType")
 	private String text;
 	
 	@Column
