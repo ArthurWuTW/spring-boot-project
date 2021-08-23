@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.dao.ITextSentimentDAO;
 import com.example.entity.TextSentiment;
-import com.example.utils.CommonDataModel;
 
 @Transactional(rollbackFor = {Exception.class})
 public class Eservice implements IEservice {
@@ -25,7 +24,16 @@ public class Eservice implements IEservice {
 
 	@Override
 	public void addTextSentiment(TextSentiment data) {
-		textSentimentDAO.insert(data);
+		if(!isExist(data)) {
+			textSentimentDAO.insert(data);
+		}
+		else {
+			System.out.println("this data already exists!");
+		}
+	}
+	
+	private boolean isExist(TextSentiment data) {
+		return (textSentimentDAO.findByTitle(data) != null) ? true : false;
 	}
 	
 }

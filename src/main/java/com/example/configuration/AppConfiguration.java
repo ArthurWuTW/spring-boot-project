@@ -34,7 +34,7 @@ public class AppConfiguration {
 	@Bean
 	public SessionFactory getSessionFactory() {
 		org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
-		configuration.setProperty("hibernate.hbm2ddl.auto", "create");
+		configuration.setProperty("hibernate.hbm2ddl.auto", "none");
 		configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL9Dialect");
 		configuration.setProperty("hibernate.current_session_context_class", "org.springframework.orm.hibernate5.SpringSessionContext");
 		configuration.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");

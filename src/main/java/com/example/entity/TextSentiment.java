@@ -47,6 +47,17 @@ public class TextSentiment implements Serializable {
 	@Column
 	private String status;
 	
+	@Column
+	private String urlId;
+	
+	public String getUrlId() {
+		return urlId;
+	}
+	
+	public void setUrlId(String urlId) {
+		this.urlId = urlId;
+	}
+	
 	public String getStatus() {
 		return status;
 	}
