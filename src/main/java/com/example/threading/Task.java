@@ -1,10 +1,7 @@
 package com.example.threading;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import com.example.entity.TextSentiment;
 import com.example.service.IEservice;
-import com.example.utils.CommonDataModel;
 
 public class Task implements Runnable{
 
