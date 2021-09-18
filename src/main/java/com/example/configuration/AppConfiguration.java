@@ -42,7 +42,7 @@ public class AppConfiguration {
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
 		DriverManagerDataSource dataSourceManager = new DriverManagerDataSource();
 		dataSourceManager.setDriverClassName("org.postgresql.Driver");
-		dataSourceManager.setUrl("jdbc:postgresql://172.17.0.2:5432/postgres");
+		dataSourceManager.setUrl("jdbc:postgresql://10.1.1.9:5432/postgres");
 		dataSourceManager.setUsername("myprojectuser");
 		dataSourceManager.setPassword("myprojectuser");
 		
