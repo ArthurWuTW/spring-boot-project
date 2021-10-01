@@ -2,7 +2,7 @@
 
 export HOST=user
 export BUILD_DIR=build/libs
-export TOMCAT_WEBAPP_DIR=/home/user/tomcat/apache-tomcat-9.0.52/webapps
+export TOMCAT_WEBAPP_DIR=/home/user/tomcat/apache-tomcat-9.0.54/webapps
 
 ./gradlew clean
 ./gradlew build
